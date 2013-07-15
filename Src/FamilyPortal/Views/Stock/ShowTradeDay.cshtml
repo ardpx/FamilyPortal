@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Trade Day List";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/ng")
+
+    <script type="text/javascript">
+        var app = angular.module('fapp', ['api']);
+	</script>
+
+	<script src="~/js/controllers/controller.tradeDays.js"></script>
+}
+
+<div ng-controller="TradeDayCtrl">
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Profit/Loss</th>
+                <th>Trade Pair Count (Trade Count)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tradeDayDC in tradeDayDCList">
+                <td>{{showDateWithoutTime(tradeDayDC.date)}}</td>
+                <td>{{tradeDayDC.profitAndLoss}}</td>
+                <td>{{tradeDayDC.tradePairCount}} ({{tradeDayDC.tradeCount}}) </td>
+                <td>{{tradeDayDC.summary}}</td>
+                
+            </tr> 
+        </tbody>
+    </table>
+</div>

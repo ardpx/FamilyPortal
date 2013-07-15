@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Stock Overview";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+<ol class="round">
+    <li class="one">
+        <h3>@Html.ActionLink("Add Trade", "AddTrade", "Stock")</h3>
+        Add trading history
+    </li>
+    <li class="two">
+        <h3>@Html.ActionLink("Show Trade Days", "TradeDay", "Stock")</h3>
+        Show trading history based on trade days
+    </li>
+</ol>

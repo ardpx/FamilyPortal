@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FamilyPortal.Utilites;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,10 @@ namespace FamilyPortal
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            if (!Logger.Initialized())
+                Logger.Initialize("FamilyPortal", "100");
+
         }
     }
 }

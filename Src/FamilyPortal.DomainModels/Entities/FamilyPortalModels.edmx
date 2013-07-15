@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FamilyPortalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FamilyPortalModelStoreContainer">
+          <EntitySet Name="stock_insights" EntityType="FamilyPortalModel.Store.stock_insights" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="stock_trade_days" EntityType="FamilyPortalModel.Store.stock_trade_days" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="stock_trade_pairs" EntityType="FamilyPortalModel.Store.stock_trade_pairs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="stock_trades" EntityType="FamilyPortalModel.Store.stock_trades" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_stock_trade_pairs_trade_day" Association="FamilyPortalModel.Store.FK_stock_trade_pairs_trade_day">
+            <End Role="stock_trade_days" EntitySet="stock_trade_days" />
+            <End Role="stock_trade_pairs" EntitySet="stock_trade_pairs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stock_trades_stock_trade_pair" Association="FamilyPortalModel.Store.FK_stock_trades_stock_trade_pair">
+            <End Role="stock_trade_pairs" EntitySet="stock_trade_pairs" />
+            <End Role="stock_trades" EntitySet="stock_trades" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="stock_insights">
+          <Key>
+            <PropertyRef Name="stock_insight_id" />
+          </Key>
+          <Property Name="stock_insight_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="summary" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock_trade_days">
+          <Key>
+            <PropertyRef Name="trade_day_id" />
+          </Key>
+          <Property Name="trade_day_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="trade_date" Type="date" Nullable="false" />
+          <Property Name="profit_loss" Type="int" Nullable="false" />
+          <Property Name="summary" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="stock_trade_pairs">
+          <Key>
+            <PropertyRef Name="trade_pair_id" />
+          </Key>
+          <Property Name="trade_pair_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="trade_day_id" Type="int" Nullable="false" />
+          <Property Name="profit_loss" Type="int" Nullable="false" />
+          <Property Name="summary" Type="nvarchar(max)" />
+          <Property Name="symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="attachment_uri" Type="nvarchar" MaxLength="256" />
+          <Property Name="spread" Type="float" Nullable="false" />
+          <Property Name="share" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock_trades">
+          <Key>
+            <PropertyRef Name="trade_id" />
+          </Key>
+          <Property Name="trade_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="trade_pair_id" Type="int" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="time" Type="time" />
+          <Property Name="action" Type="int" Nullable="false" />
+          <Property Name="share" Type="int" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="summary" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_stock_trade_pairs_trade_day">
+          <End Role="stock_trade_days" Type="FamilyPortalModel.Store.stock_trade_days" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="stock_trade_pairs" Type="FamilyPortalModel.Store.stock_trade_pairs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stock_trade_days">
+              <PropertyRef Name="trade_day_id" />
+            </Principal>
+            <Dependent Role="stock_trade_pairs">
+              <PropertyRef Name="trade_day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stock_trades_stock_trade_pair">
+          <End Role="stock_trade_pairs" Type="FamilyPortalModel.Store.stock_trade_pairs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="stock_trades" Type="FamilyPortalModel.Store.stock_trades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stock_trade_pairs">
+              <PropertyRef Name="trade_pair_id" />
+            </Principal>
+            <Dependent Role="stock_trades">
+              <PropertyRef Name="trade_pair_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FamilyPortalModels" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FamilyPortalEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="stock_insight" EntityType="FamilyPortalModels.stock_insight" />
+          <EntitySet Name="stock_trade_day" EntityType="FamilyPortalModels.stock_trade_day" />
+          <EntitySet Name="stock_trade_pairs" EntityType="FamilyPortalModels.stock_trade_pair" />
+          <EntitySet Name="stock_trades" EntityType="FamilyPortalModels.stock_trade" />
+          <AssociationSet Name="FK_stock_trade_pairs_trade_day" Association="FamilyPortalModels.FK_stock_trade_pairs_trade_day">
+            <End Role="stock_trade_days" EntitySet="stock_trade_day" />
+            <End Role="stock_trade_pairs" EntitySet="stock_trade_pairs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stock_trades_stock_trade_pair" Association="FamilyPortalModels.FK_stock_trades_stock_trade_pair">
+            <End Role="stock_trade_pairs" EntitySet="stock_trade_pairs" />
+            <End Role="stock_trades" EntitySet="stock_trades" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="stock_insight">
+          <Key>
+            <PropertyRef Name="stock_insight_id" />
+          </Key>
+          <Property Name="stock_insight_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="summary" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="stock_trade_day">
+          <Key>
+            <PropertyRef Name="trade_day_id" />
+          </Key>
+          <Property Name="trade_day_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="trade_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="summary" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="trade_pairs" Relationship="FamilyPortalModels.FK_stock_trade_pairs_trade_day" FromRole="stock_trade_days" ToRole="stock_trade_pairs" />
+          <Property Type="Int32" Name="profit_loss" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock_trade_pair">
+          <Key>
+            <PropertyRef Name="trade_pair_id" />
+          </Key>
+          <Property Name="trade_pair_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="trade_day_id" Type="Int32" Nullable="false" />
+          <Property Name="profit_loss" Type="Int32" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="symbol" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="attachment_uri" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="spread" Type="Double" Nullable="false" />
+          <NavigationProperty Name="trade_day" Relationship="FamilyPortalModels.FK_stock_trade_pairs_trade_day" FromRole="stock_trade_pairs" ToRole="stock_trade_days" />
+          <NavigationProperty Name="trades" Relationship="FamilyPortalModels.FK_stock_trades_stock_trade_pair" FromRole="stock_trade_pairs" ToRole="stock_trades" />
+          <Property Type="Int32" Name="share" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock_trade">
+          <Key>
+            <PropertyRef Name="trade_id" />
+          </Key>
+          <Property Name="trade_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="trade_pair_id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="Time" Precision="7" />
+          <Property Name="action" Type="Int32" Nullable="false" />
+          <Property Name="share" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="trade_pair" Relationship="FamilyPortalModels.FK_stock_trades_stock_trade_pair" FromRole="stock_trades" ToRole="stock_trade_pairs" />
+        </EntityType>
+        <Association Name="FK_stock_trade_pairs_trade_day">
+          <End Role="stock_trade_days" Type="FamilyPortalModels.stock_trade_day" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="stock_trade_pairs" Type="FamilyPortalModels.stock_trade_pair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stock_trade_days">
+              <PropertyRef Name="trade_day_id" />
+            </Principal>
+            <Dependent Role="stock_trade_pairs">
+              <PropertyRef Name="trade_day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stock_trades_stock_trade_pair">
+          <End Role="stock_trade_pairs" Type="FamilyPortalModels.stock_trade_pair" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="stock_trades" Type="FamilyPortalModels.stock_trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stock_trade_pairs">
+              <PropertyRef Name="trade_pair_id" />
+            </Principal>
+            <Dependent Role="stock_trades">
+              <PropertyRef Name="trade_pair_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FamilyPortalModelStoreContainer" CdmEntityContainer="FamilyPortalEntities">
+          <EntitySetMapping Name="stock_insight">
+            <EntityTypeMapping TypeName="FamilyPortalModels.stock_insight">
+              <MappingFragment StoreEntitySet="stock_insights">
+                <ScalarProperty Name="stock_insight_id" ColumnName="stock_insight_id" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_trade_day">
+            <EntityTypeMapping TypeName="FamilyPortalModels.stock_trade_day">
+              <MappingFragment StoreEntitySet="stock_trade_days">
+                <ScalarProperty Name="profit_loss" ColumnName="profit_loss" />
+                <ScalarProperty Name="trade_day_id" ColumnName="trade_day_id" />
+                <ScalarProperty Name="trade_date" ColumnName="trade_date" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_trade_pairs">
+            <EntityTypeMapping TypeName="FamilyPortalModels.stock_trade_pair">
+              <MappingFragment StoreEntitySet="stock_trade_pairs">
+                <ScalarProperty Name="share" ColumnName="share" />
+                <ScalarProperty Name="trade_pair_id" ColumnName="trade_pair_id" />
+                <ScalarProperty Name="trade_day_id" ColumnName="trade_day_id" />
+                <ScalarProperty Name="profit_loss" ColumnName="profit_loss" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="symbol" ColumnName="symbol" />
+                <ScalarProperty Name="attachment_uri" ColumnName="attachment_uri" />
+                <ScalarProperty Name="spread" ColumnName="spread" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_trades">
+            <EntityTypeMapping TypeName="FamilyPortalModels.stock_trade">
+              <MappingFragment StoreEntitySet="stock_trades">
+                <ScalarProperty Name="trade_id" ColumnName="trade_id" />
+                <ScalarProperty Name="trade_pair_id" ColumnName="trade_pair_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="share" ColumnName="share" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

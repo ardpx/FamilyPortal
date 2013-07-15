@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyPortal", "FamilyPortal\FamilyPortal.csproj", "{0614C7C1-F923-42D7-884A-A62141C57190}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyPortal.DomainModels", "FamilyPortal.DomainModels\FamilyPortal.DomainModels.csproj", "{A4C16849-9B56-4FF1-B5EE-E858F76ADAD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyPortal.Data", "FamilyPortal.Data\FamilyPortal.Data.csproj", "{711C6394-AB0D-49F0-8AD4-8268220CCFD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyPortal.Utilites", "FamilyPortal.Utilites\FamilyPortal.Utilites.csproj", "{00F8EA28-0B19-4815-936A-58869CA577C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +19,18 @@ Global
 		{0614C7C1-F923-42D7-884A-A62141C57190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0614C7C1-F923-42D7-884A-A62141C57190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0614C7C1-F923-42D7-884A-A62141C57190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C16849-9B56-4FF1-B5EE-E858F76ADAD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C16849-9B56-4FF1-B5EE-E858F76ADAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C16849-9B56-4FF1-B5EE-E858F76ADAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C16849-9B56-4FF1-B5EE-E858F76ADAD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711C6394-AB0D-49F0-8AD4-8268220CCFD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711C6394-AB0D-49F0-8AD4-8268220CCFD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711C6394-AB0D-49F0-8AD4-8268220CCFD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711C6394-AB0D-49F0-8AD4-8268220CCFD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00F8EA28-0B19-4815-936A-58869CA577C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F8EA28-0B19-4815-936A-58869CA577C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F8EA28-0B19-4815-936A-58869CA577C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F8EA28-0B19-4815-936A-58869CA577C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

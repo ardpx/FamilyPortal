@@ -1,0 +1,38 @@
+﻿<div id="fieldRules" ng-controller="StockCtrl"  class="ng-cloak">
+    <ul class="tradeDay">
+        <li ng-repeat="tradeDay in tradeDayList" class="tradeDayItem">
+            <div>Date: <input type="text" ng-model="tradeDay.date" />
+                <button type="button" id="addTradePair" name="addTradePair" class="btn btn-success"  ng-click="addTradePair(tradeDay)">Add Trade Pair</button>
+            </div>
+            <div>
+                <label for="tradeComment">Summary:</label><textarea id="tradeDayComment" ng-model="tradeDay.summary"></textarea>
+            </div>
+            <ul class="tradePair">
+                <li ng-repeat="tradePair in tradeDay.tradePairs" class="tradePairItem">
+                    <div>
+                        Symbol: <input type="text" ng-model="tradePair.symbol" /> 
+                        Attachment: <input type="text" id="tradeAttachment" ng-model="tradePair.attachment" />
+                        <button type="button" id="addTrade" name="addTrade" class="btn btn-success"  ng-click="addTrade(tradePair)">Add Trade</button>
+                    </div>
+           
+                    <ul class="trade">
+                        <li class="tradeItem" ng-repeat="trade in tradePair.trades">
+                            <div>
+                                 Time: <input type="text" id="tradeTime" ng-model="trade.time" />
+                                 Action: <select id="tradeAction" ng-model="trade.action" ng-options="ta.value as ta.text for ta in tradeActionList"></select>
+                                 Type: <select id="tradeType" ng-model="trade.type" ng-options="tt.value as tt.text for tt in getTradeType(trade.action)"></select> 
+                            </div>
+                            <div>
+                                Price: <input type="text" id="tradePrice" ng-model="trade.price" />
+                                Share: <input type="text" id="tradeShare" ng-model="trade.share" />
+                            </div>
+                            <div>
+                                <label for="tradeComment">Summary:</label><textarea id="tradeComment" ng-model="trade.summary"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

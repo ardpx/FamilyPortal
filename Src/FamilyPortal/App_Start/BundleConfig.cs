@@ -8,6 +8,8 @@ namespace FamilyPortal
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -38,6 +40,14 @@ namespace FamilyPortal
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            // angular bundle
+            bundles.Add(new ScriptBundle("~/bundles/ng").Include(
+                        "~/Scripts/AngularJS/1.0.7/angular.min.js",
+                        "~/Scripts/AngularJS/1.0.7/angular-sanitize.min.js",
+                        "~/Scripts/AngularJS/1.0.7/angular-resource.min.js",
+                        "~/js/services/stocks.factory.js",
+                        "~/js/services/api.js"));
         }
     }
 }

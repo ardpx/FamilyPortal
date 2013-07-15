@@ -754,3 +754,51 @@ tr.pager td {
             margin: 0;
         }
 }
+
+/*---------------stock---------------*/
+input {
+     width: 80px;
+     margin: 0px 2px;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+#tradeAttachment {
+     width: 400px;
+}
+
+#addTradePair {
+    margin-bottom: 4px;
+}
+
+.tradeDay, .tradePair, .trade {
+    margin-bottom: 5px ;
+    padding: 5px;
+}
+
+.tradeDayItem, .tradePairItem{
+    border: 2px solid #7ac0da;
+    margin-bottom: 5px ;
+    padding: 5px;
+}
+
+.tradeDayItem {
+    background-color: #eae6ce;
+}
+
+.tradePairItem {
+    background-color: #d5d5b4;
+}
+
+.tradeItem {
+    background-color: #b8bb6c;
+    margin: 5px 10px;
+    border: 1px solid #7ac0da;
+    padding: 5px;
+}
+
