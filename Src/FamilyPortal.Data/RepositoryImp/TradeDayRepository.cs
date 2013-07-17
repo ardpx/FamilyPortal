@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace FamilyPortal.Data.RepositoryImp
 {
@@ -41,5 +42,14 @@ namespace FamilyPortal.Data.RepositoryImp
             var entityContext = EntityModelHelper.GetEntityContext(appContext);
             entityContext.stock_trade_days.Add(tradeDay);
         }
+
+		public IEnumerable<stock_trade_pair> GetTradePairList(IAppContext appContext, Expression<Func<stock_trade_pair, bool>> where)
+		{
+			var entityContext = EntityModelHelper.GetEntityContext(appContext);
+			var tradePairList = entityContext.stock_trade_pairs.Include("stock_trade")
+											 .Select(tp => tp)
+											 .ToList();
+			return tradePairList;
+		}
     }
 }

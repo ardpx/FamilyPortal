@@ -261,6 +261,7 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="js\controllers\controller.stocks.js" />
     <Content Include="js\controllers\controller.tradeDays.js" />
+    <Content Include="js\controllers\controller.tradePairs.js" />
     <Content Include="js\services\api.js" />
     <Content Include="js\services\stocks.factory.js" />
     <Content Include="Scripts\AngularJS\1.0.7\angular-bootstrap-prettify.js" />
@@ -623,6 +624,7 @@
     <Content Include="Views\Stock\AddTrade.cshtml" />
     <Content Include="Views\Stock\_AddTrade.cshtml" />
     <Content Include="Views\Stock\ShowTradeDay.cshtml" />
+    <Content Include="Views\Stock\ShowTradePair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

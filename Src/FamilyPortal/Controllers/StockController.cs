@@ -32,5 +32,11 @@ namespace FamilyPortal.Controllers
             return View("ShowTradeDay");
         }
 
+		[ActionName("TradePair")]
+		public ActionResult ShowTradePair()
+		{
+			return View("ShowTradePair");
+		}
+
     }
 }
